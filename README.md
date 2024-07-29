@@ -1,1 +1,1 @@
-CUHK IE WiNS Group LLT streaming project
+streaming project based on aiortc
