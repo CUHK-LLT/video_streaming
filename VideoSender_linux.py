@@ -13,7 +13,9 @@ from aiortc import RTCPeerConnection, RTCSessionDescription, VideoStreamTrack, R
 """
 relay = []
 webcam = []
-
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s.%(msecs)03d - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S')
 
 def force_codec(pc, sender, forced_codec):
     kind = forced_codec.split("/")[0]
@@ -62,7 +64,7 @@ async def main():
 
     # 获取视频源
     # 打开默认摄像头
-    capture = cv2.VideoCapture(1)  # 0通常是默认的摄像头
+    capture = cv2.VideoCapture(0)  # 0通常是默认的摄像头
 
     # 尝试设置摄像头的分辨率和帧率
     capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -104,7 +106,8 @@ async def main():
 
     print("Begin Video capture AND rtp transmission")
 
-    await asyncio.sleep(30)
+    await asyncio.sleep(0.1)
+    await asyncio.sleep(10)
     print("That's all")
 
     # Close the track and connection
