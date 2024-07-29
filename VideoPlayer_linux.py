@@ -26,8 +26,8 @@ async def process_track(track):
                 # 设置10秒超时，接收新帧
                 frame = await asyncio.wait_for(track.recv(), timeout=10)
                 current_time = time.time()
-                logging.info(f"Received a frame: {frame_index} at {current_time:.6f}")
                 frame_index += 1
+                logging.info(f"Received a frame: {frame_index} at {current_time:.6f}")
             except asyncio.TimeoutError:
                 # 如果超过10秒没有接收到新的帧，抛出异常
                 raise Exception("Frame reception timed out after 10 seconds")
